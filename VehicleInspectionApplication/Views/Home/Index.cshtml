@@ -11,8 +11,7 @@
         <h1 class="display-4 font-weight-bold">Vehicle Inspection</h1>
         <hr class="my-4" />
         <p class="lead">
-            This is a simple hero unit, a simple jumbotron-style component for
-            calling extra attention to featured content or information.
+            Vehicle Inspection Web Application.
         </p>
     </div>
 </div>
@@ -20,7 +19,15 @@
 <div class="row">
     <div class="col-md-4">
         <div class="panel-body" data-bind="with: showVehicleViewModel">
-            @Html.Partial("TestView")
+            @Html.Partial("Vehicle")
+        </div>
+    </div>
+</div>
+
+<div >
+    <div >
+        <div class="panel-body" data-bind="with: showInspectionViewModel">
+            @Html.Partial("Inspection")
         </div>
     </div>
 </div>

@@ -1,0 +1,20 @@
+﻿<form role="form">
+    <div class="form-group">
+        <label for="make">Make:</label>
+        <select id="make" class="form-control" data-bind="click: getModels, options: makes, value: Make"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="model">Model:</label>
+        <select id="model" class="form-control" data-bind="options: models, value: Model"></select>
+    </div>
+
+    <div class="form-group">
+        <label for="inpAge">Type</label>
+        <input id="inpAge" type="text" class="form-control" disabled data-bind="value: Type" />
+    </div>
+
+
+</form>
+
+<input type="button" id="btnCreateInspec" class="btn btn-primary" value="Create Inspection" data-bind="click: addVehicle" />

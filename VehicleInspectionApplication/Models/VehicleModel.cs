@@ -8,10 +8,10 @@ namespace VehicleInspectionApplication.Models
 {
     public class VehicleModel
     {
-        private static InspectionDBEntities _vehicleDb;
-        private static InspectionDBEntities VehicleDb
+        private static InspectionDBEntities1 _vehicleDb;
+        private static InspectionDBEntities1 VehicleDb
         {
-            get { return _vehicleDb ?? (_vehicleDb = new InspectionDBEntities()); }
+            get { return _vehicleDb ?? (_vehicleDb = new InspectionDBEntities1()); }
         }
 
         /// <summary>

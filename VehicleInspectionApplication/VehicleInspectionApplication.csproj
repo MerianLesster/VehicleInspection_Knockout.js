@@ -142,28 +142,43 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MakeController.cs" />
+    <Compile Include="Controllers\ModelController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
-    <Compile Include="EntityDataModel\Vehicle.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
+    <Compile Include="EntityDataModel\Make.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
     </Compile>
-    <Compile Include="EntityDataModel\VehicleModel.Context.cs">
+    <Compile Include="EntityDataModel\Model.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\Vehicle.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\VehicleInspecEDM.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VehicleModel.Context.tt</DependentUpon>
+      <DependentUpon>VehicleInspecEDM.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\VehicleInspecEDM.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\VehicleInspecEDM.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\VehicleModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
       <DependentUpon>VehicleModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\VehicleModel.Designer.cs">
-      <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>VehicleModel.edmx</DependentUpon>
+      <AutoGen>True</AutoGen>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\MakeMdl.cs" />
+    <Compile Include="Models\ModelMdl.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -176,14 +191,18 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="EntityDataModel\VehicleModel.Context.tt">
+    <Content Include="EntityDataModel\VehicleInspecEDM.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VehicleModel.Context.cs</LastGenOutput>
-      <DependentUpon>VehicleModel.edmx</DependentUpon>
+      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
+      <LastGenOutput>VehicleInspecEDM.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="EntityDataModel\VehicleInspecEDM.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
+      <LastGenOutput>VehicleInspecEDM.cs</LastGenOutput>
     </Content>
     <Content Include="EntityDataModel\VehicleModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VehicleModel.edmx</DependentUpon>
       <LastGenOutput>VehicleModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
@@ -193,12 +212,12 @@
     <Content Include="KnockoutModels\VehicleViewModel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="EntityDataModel\VehicleModel.edmx">
+    <EntityDeploy Include="EntityDataModel\VehicleInspecEDM.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VehicleModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>VehicleInspecEDM.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="EntityDataModel\VehicleModel.edmx.diagram">
-      <DependentUpon>VehicleModel.edmx</DependentUpon>
+    <Content Include="EntityDataModel\VehicleInspecEDM.edmx.diagram">
+      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -227,7 +246,8 @@
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\TestView.cshtml" />
+    <Content Include="Views\Home\Vehicle.cshtml" />
+    <Content Include="Views\Home\Inspection.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

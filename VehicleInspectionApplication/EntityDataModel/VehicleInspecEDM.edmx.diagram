@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="8da80fb72b224c49afd1f7a91aeea60d" Name="Diagram1">
+        <EntityTypeShape EntityType="InspectionDBModel.Vehicle" Width="1.5" PointX="4.875" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBModel.Make" Width="1.5" PointX="2" PointY="1.875" />
+        <EntityTypeShape EntityType="InspectionDBModel.Model" Width="1.5" PointX="2" PointY="5" />
+        <AssociationConnector Association="InspectionDBModel.FK_Model_ToTable" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

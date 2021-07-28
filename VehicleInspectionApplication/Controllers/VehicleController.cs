@@ -41,11 +41,5 @@ namespace VehicleInspectionApplication.Controllers
             return response;
         }
 
-        // PUT: api/Vehicle/5
-        //public void Put(int id, [FromBody]string value)
-        //{
-        //}
-
-
     }
 }
