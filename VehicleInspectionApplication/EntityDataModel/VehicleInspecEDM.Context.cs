@@ -13,10 +13,10 @@ namespace VehicleInspectionApplication.EntityDataModel
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class InspectionDBEntities1 : DbContext
+    public partial class InspectionDBEntities2 : DbContext
     {
-        public InspectionDBEntities1()
-            : base("name=InspectionDBEntities1")
+        public InspectionDBEntities2()
+            : base("name=InspectionDBEntities2")
         {
         }
     
@@ -25,8 +25,13 @@ namespace VehicleInspectionApplication.EntityDataModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<Checkpoint> Checkpoints { get; set; }
+        public virtual DbSet<CheckpointGroup> CheckpointGroups { get; set; }
+        public virtual DbSet<Inspection> Inspections { get; set; }
+        public virtual DbSet<InspectionCheckpoint> InspectionCheckpoints { get; set; }
         public virtual DbSet<Make> Makes { get; set; }
         public virtual DbSet<Model> Models { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
     }
 }

@@ -18,9 +18,9 @@ namespace VehicleInspectionApplication.Controllers
         //}
 
         // GET: api/Model/audi
-        public IEnumerable<Model> Get(string makeName)
+        public IEnumerable<Model> Get(int makeId)
         {
-            return ModelMdl.GetModels(makeName);
+            return ModelMdl.GetModels(makeId);
         }
 
     }

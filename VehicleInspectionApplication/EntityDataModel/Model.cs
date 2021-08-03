@@ -14,10 +14,18 @@ namespace VehicleInspectionApplication.EntityDataModel
     
     public partial class Model
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Model()
+        {
+            this.Vehicles = new HashSet<Vehicle>();
+        }
+    
         public int Id { get; set; }
         public string Name { get; set; }
-        public string MakeName { get; set; }
+        public int Make_Id { get; set; }
     
         public virtual Make Make { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Vehicle> Vehicles { get; set; }
     }
 }

@@ -16,17 +16,24 @@
     </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <div class="panel-body" data-bind="with: showVehicleViewModel">
+<div data-bind="with: showVehicleViewModel">
+    <div class="row">
+        <div class="panel-body" data-bind="hidden: LoginSuccess">
+            @Html.Partial("Login")
+        </div>
+    </div>
+
+    <div class="row" data-bind="visible: LoginSuccess">
+        <div style="text-align: right">
+            Welcome<h4 data-bind="text: Username" style="font-weight: bold"></h4>
+        </div>
+        <div class="panel-body">
             @Html.Partial("Vehicle")
         </div>
     </div>
-</div>
 
-<div >
-    <div >
-        <div class="panel-body" data-bind="with: showInspectionViewModel">
+    <div class="row" data-bind="visible: InspectionReady">
+        <div class="panel-body">
             @Html.Partial("Inspection")
         </div>
     </div>

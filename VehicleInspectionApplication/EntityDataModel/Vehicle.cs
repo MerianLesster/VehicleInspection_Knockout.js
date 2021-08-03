@@ -14,9 +14,18 @@ namespace VehicleInspectionApplication.EntityDataModel
     
     public partial class Vehicle
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Vehicle()
+        {
+            this.Inspections = new HashSet<Inspection>();
+        }
+    
         public int Id { get; set; }
-        public string Make { get; set; }
-        public string Model { get; set; }
         public string Type { get; set; }
+        public int Model_Id { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Inspection> Inspections { get; set; }
+        public virtual Model Model { get; set; }
     }
 }

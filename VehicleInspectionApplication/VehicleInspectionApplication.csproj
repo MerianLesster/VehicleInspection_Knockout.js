@@ -141,14 +141,32 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\CheckpGroupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InspectionController.cs" />
     <Compile Include="Controllers\MakeController.cs" />
     <Compile Include="Controllers\ModelController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
+    <Compile Include="EntityDataModel\Checkpoint.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\CheckpointGroup.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\Inspection.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\InspectionCheckpoint.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
     <Compile Include="EntityDataModel\Make.cs">
       <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\Model.cs">
+      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\User.cs">
       <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\Vehicle.cs">
@@ -169,16 +187,14 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
     </Compile>
-    <Compile Include="EntityDataModel\VehicleModel.cs">
-      <DependentUpon>VehicleModel.tt</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CheckpGroupMdl.cs" />
+    <Compile Include="Models\InspectionMdl.cs" />
     <Compile Include="Models\MakeMdl.cs" />
     <Compile Include="Models\ModelMdl.cs" />
+    <Compile Include="Models\UserModel.cs" />
     <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -200,10 +216,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
       <LastGenOutput>VehicleInspecEDM.cs</LastGenOutput>
-    </Content>
-    <Content Include="EntityDataModel\VehicleModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VehicleModel.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -248,8 +260,11 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\Vehicle.cshtml" />
     <Content Include="Views\Home\Inspection.cshtml" />
+    <Content Include="Views\Home\Login.cshtml" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Views\Inspection\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
