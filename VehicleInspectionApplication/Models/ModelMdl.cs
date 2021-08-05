@@ -15,9 +15,9 @@ namespace VehicleInspectionApplication.Models
         }
 
         /// <summary>
-        /// Gets the makes.
+        /// Gets the models.
         /// </summary>
-        /// <returns>IEnumerable Make List</returns>
+        /// <returns>IEnumerable Model List</returns>
         public static IQueryable<Model> GetModels(int makeId)
         {
             ModelDb.Configuration.ProxyCreationEnabled = false;

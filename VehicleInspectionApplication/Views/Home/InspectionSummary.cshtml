@@ -1,0 +1,24 @@
+﻿<div class="panel panel-default">
+    <div class="panel-heading">Inspection Summary</div>
+    <div class="panel-body">
+        <p style="text-align: center" data-bind="if: finalInspecArr().length <= 0">No Inspection Checkpoints Added</p>
+        <div style="padding: 15px;" data-bind="foreach: { data: finalInspecArr, as: 'inspection' }">
+            <b data-bind="text: inspection.Checkpoint.Name"></b><br />
+            Comment -
+            <!-- ko if: inspection.Comment -->
+            <span data-bind="text: inspection.Comment"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: inspection.Comment -->
+            <i>No comments added</i>
+            <!-- /ko --><br />
+            Status -
+            <!-- ko if: inspection.Status == 'Pass' -->
+            <span style="color: green" data-bind="text: inspection.Status"></span>
+            <!-- /ko -->
+            <!-- ko ifnot: inspection.Status == 'Pass'-->
+            <span style="color: red" data-bind="text: inspection.Status"></span>
+            <!-- /ko --><br />
+            <br /><hr />
+        </div>
+    </div>
+</div>

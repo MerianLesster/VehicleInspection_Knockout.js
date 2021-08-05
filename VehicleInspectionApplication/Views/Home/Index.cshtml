@@ -24,7 +24,7 @@
     </div>
 
     <div class="row" data-bind="visible: LoginSuccess">
-        <div style="text-align: right">
+        <div style="text-align: right; padding-right: 18px">
             Welcome<h4 data-bind="text: Username" style="font-weight: bold"></h4>
         </div>
         <div class="panel-body">
@@ -32,9 +32,18 @@
         </div>
     </div>
 
-    <div class="row" data-bind="visible: InspectionReady">
+    <div class="row" data-bind="if: InspectionReady">
         <div class="panel-body">
             @Html.Partial("Inspection")
+        </div>
+        <div style="float: right; padding-right: 18px">
+            <input type="button" class="btn btn-success" value="View Inspection Summary" data-bind="click: viewInspecSummary" />
+        </div>
+    </div>
+
+    <div class="row" data-bind="if: ShowSummary">
+        <div class="panel-body">
+            @Html.Partial("InspectionSummary")
         </div>
     </div>
 </div>

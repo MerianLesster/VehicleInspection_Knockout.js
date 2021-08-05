@@ -6,14 +6,14 @@ function Vehicle() {
     self.Make = ko.observable("");
     self.Model = ko.observable("");
     self.Type = ko.observable("");
-
+    self.StatusArr = ko.observableArray(['Pass', 'Fail']);
+    self.Inspection = ko.observable("");
     self.Username = ko.observable("");
     self.Password = ko.observable("");
 
     self.InspectionReady = ko.observable(false);
     self.LoginSuccess = ko.observable(false);
-
-    //self.CheckpointGroup = ko.observableArray([{ Name: "Interior", Checkpoints: ["AC", "Seats", "Steering wheel"] }]);
+    self.ShowSummary = ko.observable(false);
 
     self.models = ko.observableArray();
     self.models.removeAll();
@@ -59,7 +59,7 @@ function Vehicle() {
                     }
                 }
             });
-        }
+        } 
     };
 
 
@@ -82,24 +82,6 @@ function Vehicle() {
         });
     };
 
-    // Get Checkpoint Groups
-    self.CheckpointGroup = ko.observableArray();
-    self.CheckpointGroup.removeAll();
-
-    self.getCheckpointGroup = function () {
-        $.ajax({
-            url: '/api/CheckpGroup',
-            type: 'get',
-            contentType: 'application/json',
-            success: function (data) {
-                var arr = data.map(item => item);
-                var iterator = arr.values();
-                for (let elements of iterator) {
-                    self.CheckpointGroup.push(elements);
-                }
-            }
-        });
-    };
 
     // Get Models
     self.getModels = function () {
@@ -120,8 +102,16 @@ function Vehicle() {
         }
     };
 
+
     // Add Vehicle
     self.addVehicle = function () {
+        if (!self.Make()) {
+            alert("Please select the make of the vehicle");
+            return;
+        } if (!self.Model()) {
+            alert("Please select the model of the vehicle");
+            return;
+        }
         var vehicleObject = { Type: self.Type(), Model_Id: self.Model().Id }
         $.ajax({
             url: '/api/Vehicle',
@@ -129,24 +119,115 @@ function Vehicle() {
             data: ko.toJSON(vehicleObject),
             contentType: 'application/json',
             success: function (vehicleRes) {
-                console.log("Vehicle Success - ", vehicleRes);
                 var userLocalStorage = localStorage.getItem('user');
                 var inspecObject = { Date: new Date().toISOString(), Score: 0, UserId: JSON.parse(userLocalStorage).Id, VehicleId: vehicleRes.Id }
+                // Create Inspection
                 $.ajax({
                     url: '/api/Inspection',
                     type: 'post',
                     data: ko.toJSON(inspecObject),
                     contentType: 'application/json',
                     success: function (data) {
-                        self.InspectionReady(true);
-                        console.log("Inspection Success - ", data);
+                        self.Inspection(data);
                         self.getCheckpointGroup();
                     }
                 });
             }
         });
     };
-   
+
+    // self.CheckpointGroup = ko.observableArray([{ Name: "Interior", Checkpoints: ["AC", "Seats", "Steering wheel"] }]);
+
+    // Get Checkpoint Groups
+    self.CheckpointGroup = ko.observableArray();
+    self.CheckpointGroup.removeAll();
+
+    self.getCheckpointGroup = async function () {
+        $.ajax({
+            url: '/api/CheckpGroup',
+            type: 'get',
+            contentType: 'application/json',
+            success: async function (data) {
+                var arr = data.map(item => item);
+                var iterator = arr.values();
+                for (let elements of iterator) {
+                    self.CheckpointGroup.push(elements);
+                }
+                for (var i = 0; i < self.CheckpointGroup().length; i++) {
+                    await self.getCheckpoint(self.CheckpointGroup()[i].Id);
+                    self.CheckpointGroup()[i].Checkpoints.push(self.Checkpoints());
+                    self.Checkpoints([]);
+                }
+                self.InspectionReady(true);
+            }
+        });
+    };
+
+
+    // Get Checkpoint based on checkpoint groups
+    self.Checkpoints = ko.observableArray();
+    self.Checkpoints.removeAll();
+
+    self.getCheckpoint = async function (ckpGroupId) {
+        await $.ajax({
+            url: '/api/Checkpoint/?ckpGroupId=' + ckpGroupId + '&vehicleType=' + self.Type(),
+            type: 'get',
+            contentType: 'application/json',
+            success: function (data) {
+                var arr = data.map(item => item);
+                var iterator = arr.values();
+                for (let elements of iterator) {
+                    self.Checkpoints.push(elements);
+                }
+            }
+        });
+    };
+
+
+    // Add Inspection Checkpoint
+    self.addInspecCheckpoint = function (data, event) {
+        let checkpointId = event.target.getAttribute("CpId");
+        let comment = document.getElementById("comment" + checkpointId).value;
+        let status = document.getElementById("status" + checkpointId).value;
+        if (!status) {
+            alert("Please select the status");
+            return;
+        }
+        var chpObj = { CheckpId: checkpointId, InspecId: self.Inspection().Id, Status: status, Comment: comment }
+         $.ajax({
+             url: '/api/InspecCheckpoint',
+             type: 'post',
+             data: ko.toJSON(chpObj),
+            contentType: 'application/json',
+             success: function (data) {
+                 document.getElementById("btn" + checkpointId).style.visibility = "hidden";
+                 document.getElementById("comment" + checkpointId).disabled = true;
+                 document.getElementById("status" + checkpointId).disabled = true;
+            }
+        });
+    };
+
+
+    // View Inspection Summary
+    self.finalInspecArr = ko.observableArray();
+    self.finalInspecArr.removeAll();
+
+    self.viewInspecSummary = function () {
+        $.ajax({
+            url: '/api/InspecCheckpoint/?inspecId=' + self.Inspection().Id,
+            type: 'get',
+            contentType: 'application/json',
+            success: function (data) {
+                self.finalInspecArr.removeAll();
+                var arr = data.map(item => item);
+                var iterator = arr.values();
+                for (let elements of iterator) {
+                    self.finalInspecArr.push(elements);
+                }
+                self.ShowSummary(true);
+            }
+        });
+    };
 }
 
 // create index view view model which contain two models for partial views

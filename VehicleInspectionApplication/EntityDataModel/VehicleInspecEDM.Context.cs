@@ -18,6 +18,7 @@ namespace VehicleInspectionApplication.EntityDataModel
         public InspectionDBEntities2()
             : base("name=InspectionDBEntities2")
         {
+            this.Configuration.LazyLoadingEnabled = true;
         }
     
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
