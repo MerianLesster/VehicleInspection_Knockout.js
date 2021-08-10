@@ -1,5 +1,0 @@
-C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.dll
-C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\BusinessLogicLayer\bin\Debug\BusinessLogicLayer.pdb
-C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.csproj.CoreCompileInputs.cache
-C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.dll
-C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\BusinessLogicLayer\obj\Debug\BusinessLogicLayer.pdb
