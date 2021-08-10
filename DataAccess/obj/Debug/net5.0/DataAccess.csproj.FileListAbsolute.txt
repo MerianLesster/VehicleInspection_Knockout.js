@@ -1,0 +1,14 @@
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\net5.0\DataAccess.deps.json
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.json
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\net5.0\DataAccess.runtimeconfig.dev.json
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\net5.0\DataAccess.dll
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\net5.0\ref\DataAccess.dll
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\net5.0\DataAccess.pdb
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\DataAccess.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfoInputs.cache
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\DataAccess.AssemblyInfo.cs
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\DataAccess.dll
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\ref\DataAccess.dll
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\DataAccess.pdb
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\net5.0\DataAccess.genruntimeconfig.cache

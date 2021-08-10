@@ -1,0 +1,12 @@
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.deps.json
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.runtimeconfig.json
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.runtimeconfig.dev.json
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\bin\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.AssemblyReference.cache
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfoInputs.cache
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.AssemblyInfo.cs
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.csproj.CoreCompileInputs.cache
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.dll
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.pdb
+C:\Users\MerianL\Desktop\Vehicle_Inspection\Project\VehicleInspectionApplication\DataAccess\obj\Debug\netcoreapp3.1\DataAccess.genruntimeconfig.cache
