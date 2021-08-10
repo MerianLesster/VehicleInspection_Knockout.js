@@ -46,10 +46,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -141,65 +141,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\CheckpGroupController.cs" />
-    <Compile Include="Controllers\CheckpointController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\InspecCheckpointController.cs" />
-    <Compile Include="Controllers\InspectionController.cs" />
-    <Compile Include="Controllers\MakeController.cs" />
-    <Compile Include="Controllers\ModelController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\VehicleController.cs" />
-    <Compile Include="EntityDataModel\Checkpoint.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\CheckpointGroup.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\DBModel1.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel1.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\DBModel1.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\DBModel1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>DBModel1.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\Inspection.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\InspectionCheckpoint.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\Make.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\Model.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\User.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\Vehicle.cs">
-      <DependentUpon>DBModel1.tt</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\CheckpGroupMdl.cs" />
-    <Compile Include="Models\CheckpointMdl.cs" />
-    <Compile Include="Models\InspecCheckpointMdl.cs" />
-    <Compile Include="Models\InspectionMdl.cs" />
-    <Compile Include="Models\MakeMdl.cs" />
-    <Compile Include="Models\ModelMdl.cs" />
-    <Compile Include="Models\UserModel.cs" />
-    <Compile Include="Models\VehicleModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -207,16 +151,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="EntityDataModel\DBModel1.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel1.edmx</DependentUpon>
-      <LastGenOutput>DBModel1.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="EntityDataModel\DBModel1.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>DBModel1.edmx</DependentUpon>
-      <LastGenOutput>DBModel1.cs</LastGenOutput>
-    </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -224,13 +158,6 @@
     <Content Include="KnockoutModels\VehicleViewModel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="EntityDataModel\DBModel1.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>DBModel1.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="EntityDataModel\DBModel1.edmx.diagram">
-      <DependentUpon>DBModel1.edmx</DependentUpon>
-    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -282,6 +209,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DataAccessLayer\DataAccessLayer.csproj">
+      <Project>{809469d6-d4ee-4016-a08e-c774d5457a25}</Project>
+      <Name>DataAccessLayer</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

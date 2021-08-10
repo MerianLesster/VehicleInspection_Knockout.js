@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="InspectionDBEntitiesModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Checkpoint">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="VehicleType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Grade" Type="Int32" />
+    <Property Name="CkpGroupId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="CheckpointGroup" Relationship="Self.FK_Checkpoint_CkpGroupId" FromRole="Checkpoint" ToRole="CheckpointGroup" />
+    <NavigationProperty Name="InspectionCheckpoints" Relationship="Self.FK_InspectionCheckpoint_CheckpId" FromRole="Checkpoint" ToRole="InspectionCheckpoint" />
+  </EntityType>
+  <EntityType Name="CheckpointGroup">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Checkpoints" Relationship="Self.FK_Checkpoint_CkpGroupId" FromRole="CheckpointGroup" ToRole="Checkpoint" />
+  </EntityType>
+  <EntityType Name="Inspection">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Date" Type="DateTime" Precision="0" />
+    <Property Name="Score" Type="Double" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="VehicleId" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Inspection_UserId" FromRole="Inspection" ToRole="User" />
+    <NavigationProperty Name="Vehicle" Relationship="Self.FK_Inspection_VehicleId" FromRole="Inspection" ToRole="Vehicle" />
+    <NavigationProperty Name="InspectionCheckpoints" Relationship="Self.FK_InspectionCheckpoint_InspecId" FromRole="Inspection" ToRole="InspectionCheckpoint" />
+  </EntityType>
+  <EntityType Name="InspectionCheckpoint">
+    <Key>
+      <PropertyRef Name="CheckpId" />
+      <PropertyRef Name="InspecId" />
+    </Key>
+    <Property Name="CheckpId" Type="Int32" Nullable="false" />
+    <Property Name="InspecId" Type="Int32" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Comment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Checkpoint" Relationship="Self.FK_InspectionCheckpoint_CheckpId" FromRole="InspectionCheckpoint" ToRole="Checkpoint" />
+    <NavigationProperty Name="Inspection" Relationship="Self.FK_InspectionCheckpoint_InspecId" FromRole="InspectionCheckpoint" ToRole="Inspection" />
+  </EntityType>
+  <EntityType Name="Make">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Models" Relationship="Self.FK_Model_Make_Id" FromRole="Make" ToRole="Model" />
+  </EntityType>
+  <EntityType Name="Model">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Make_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Make" Relationship="Self.FK_Model_Make_Id" FromRole="Model" ToRole="Make" />
+    <NavigationProperty Name="Vehicles" Relationship="Self.FK_Vehicle_Model_Id" FromRole="Model" ToRole="Vehicle" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Inspections" Relationship="Self.FK_Inspection_UserId" FromRole="User" ToRole="Inspection" />
+  </EntityType>
+  <EntityType Name="Vehicle">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Model_Id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Inspections" Relationship="Self.FK_Inspection_VehicleId" FromRole="Vehicle" ToRole="Inspection" />
+    <NavigationProperty Name="Model" Relationship="Self.FK_Vehicle_Model_Id" FromRole="Vehicle" ToRole="Model" />
+  </EntityType>
+  <Association Name="FK_Checkpoint_CkpGroupId">
+    <End Role="CheckpointGroup" Type="Self.CheckpointGroup" Multiplicity="1" />
+    <End Role="Checkpoint" Type="Self.Checkpoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="CheckpointGroup">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Checkpoint">
+        <PropertyRef Name="CkpGroupId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InspectionCheckpoint_CheckpId">
+    <End Role="Checkpoint" Type="Self.Checkpoint" Multiplicity="1" />
+    <End Role="InspectionCheckpoint" Type="Self.InspectionCheckpoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Checkpoint">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InspectionCheckpoint">
+        <PropertyRef Name="CheckpId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inspection_UserId">
+    <End Role="User" Type="Self.User" Multiplicity="1" />
+    <End Role="Inspection" Type="Self.Inspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inspection">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Inspection_VehicleId">
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="1" />
+    <End Role="Inspection" Type="Self.Inspection" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vehicle">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Inspection">
+        <PropertyRef Name="VehicleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_InspectionCheckpoint_InspecId">
+    <End Role="Inspection" Type="Self.Inspection" Multiplicity="1" />
+    <End Role="InspectionCheckpoint" Type="Self.InspectionCheckpoint" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Inspection">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="InspectionCheckpoint">
+        <PropertyRef Name="InspecId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Model_Make_Id">
+    <End Role="Make" Type="Self.Make" Multiplicity="1" />
+    <End Role="Model" Type="Self.Model" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Make">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Model">
+        <PropertyRef Name="Make_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Vehicle_Model_Id">
+    <End Role="Model" Type="Self.Model" Multiplicity="1" />
+    <End Role="Vehicle" Type="Self.Vehicle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Model">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Vehicle">
+        <PropertyRef Name="Model_Id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="InspectionDBEntities2Entities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Checkpoints" EntityType="Self.Checkpoint" />
+    <EntitySet Name="CheckpointGroups" EntityType="Self.CheckpointGroup" />
+    <EntitySet Name="Inspections" EntityType="Self.Inspection" />
+    <EntitySet Name="InspectionCheckpoints" EntityType="Self.InspectionCheckpoint" />
+    <EntitySet Name="Makes" EntityType="Self.Make" />
+    <EntitySet Name="Models" EntityType="Self.Model" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <EntitySet Name="Vehicles" EntityType="Self.Vehicle" />
+    <AssociationSet Name="FK_Checkpoint_CkpGroupId" Association="Self.FK_Checkpoint_CkpGroupId">
+      <End Role="CheckpointGroup" EntitySet="CheckpointGroups" />
+      <End Role="Checkpoint" EntitySet="Checkpoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InspectionCheckpoint_CheckpId" Association="Self.FK_InspectionCheckpoint_CheckpId">
+      <End Role="Checkpoint" EntitySet="Checkpoints" />
+      <End Role="InspectionCheckpoint" EntitySet="InspectionCheckpoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inspection_UserId" Association="Self.FK_Inspection_UserId">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Inspection" EntitySet="Inspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Inspection_VehicleId" Association="Self.FK_Inspection_VehicleId">
+      <End Role="Vehicle" EntitySet="Vehicles" />
+      <End Role="Inspection" EntitySet="Inspections" />
+    </AssociationSet>
+    <AssociationSet Name="FK_InspectionCheckpoint_InspecId" Association="Self.FK_InspectionCheckpoint_InspecId">
+      <End Role="Inspection" EntitySet="Inspections" />
+      <End Role="InspectionCheckpoint" EntitySet="InspectionCheckpoints" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Model_Make_Id" Association="Self.FK_Model_Make_Id">
+      <End Role="Make" EntitySet="Makes" />
+      <End Role="Model" EntitySet="Models" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Vehicle_Model_Id" Association="Self.FK_Vehicle_Model_Id">
+      <End Role="Model" EntitySet="Models" />
+      <End Role="Vehicle" EntitySet="Vehicles" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
