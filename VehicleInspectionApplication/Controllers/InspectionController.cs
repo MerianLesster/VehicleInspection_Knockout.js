@@ -20,5 +20,12 @@ namespace VehicleInspectionApplication.Controllers
             response.Headers.Location = new Uri(url);
             return response;
         }
+
+        public HttpResponseMessage Put(int id, [FromBody]Inspection inspection)
+        {
+            InspectionMdl.UpdateInspection(id, inspection);
+            var response = Request.CreateResponse(HttpStatusCode.NoContent, id);
+            return response;
+        }
     }
 }

@@ -7,10 +7,10 @@ namespace VehicleInspectionApplication.Models
 {
     public class CheckpGroupMdl
     {
-        private static InspectionDBEntities2 _Db;
-        private static InspectionDBEntities2 Db
+        private static InspectionDBEntities2Entities _Db;
+        private static InspectionDBEntities2Entities Db
         {
-            get { return _Db ?? (_Db = new InspectionDBEntities2()); }
+            get { return _Db ?? (_Db = new InspectionDBEntities2Entities()); }
         }
 
         /// <summary>

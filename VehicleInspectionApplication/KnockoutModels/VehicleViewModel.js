@@ -225,9 +225,51 @@ function Vehicle() {
                     self.finalInspecArr.push(elements);
                 }
                 self.ShowSummary(true);
+                self.calculateScore();
             }
         });
     };
+
+
+    self.calculateScore = function () {
+        console.log("test - ", self.finalInspecArr());
+        let checkpointGScore = 0;
+        let inspectionScore = 0;
+        var arr = [];
+        var scoreArr = [];
+        for (let i = 0; i < self.finalInspecArr().length; i++) {
+            arr[i] = { CkpGroupId: self.finalInspecArr()[i].Checkpoint.CkpGroupId, Grade: self.finalInspecArr()[i].Checkpoint.Grade * 10, Status: self.finalInspecArr()[i].Status }
+        }
+        let obj = arr.reduce((res, curr) => {
+            if (res[curr.CkpGroupId])
+                res[curr.CkpGroupId].push(curr);
+            else
+                Object.assign(res, { [curr.CkpGroupId]: [curr] });
+
+            return res;
+        }, {});
+        console.log("calculateScore arr - ", obj);
+
+        for (var one in obj) {
+            for (var i in one) {
+                if (i.Status == "Pass") {
+                    checkpointGScore = checkpointGScore + i.Grade;
+                    scoreArr.push(checkpointGScore);
+                }
+            }
+        }
+
+        let inspecObject1 = { Score: 90}
+        // Update Inspection
+        $.ajax({
+            url: '/api/Inspection/?id=' + self.Inspection().Id,
+            type: 'put',
+            data: ko.toJSON(inspecObject1),
+            contentType: 'application/json',
+            success: function (data) {
+            }
+        });
+    }
 }
 
 // create index view view model which contain two models for partial views

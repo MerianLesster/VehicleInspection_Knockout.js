@@ -8,10 +8,10 @@ namespace VehicleInspectionApplication.Models
 {
     public class MakeMdl
     {
-        private static InspectionDBEntities2 _makeDb;
-        private static InspectionDBEntities2 MakeDb
+        private static InspectionDBEntities2Entities _makeDb;
+        private static InspectionDBEntities2Entities MakeDb
         {
-            get { return _makeDb ?? (_makeDb = new InspectionDBEntities2()); }
+            get { return _makeDb ?? (_makeDb = new InspectionDBEntities2Entities()); }
         }
         
         /// <summary>

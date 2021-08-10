@@ -151,43 +151,43 @@
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\VehicleController.cs" />
     <Compile Include="EntityDataModel\Checkpoint.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\CheckpointGroup.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DBModel1.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel1.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DBModel1.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel1.tt</DependentUpon>
+    </Compile>
+    <Compile Include="EntityDataModel\DBModel1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DBModel1.edmx</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\Inspection.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\InspectionCheckpoint.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\Make.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\Model.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\User.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="EntityDataModel\Vehicle.cs">
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\VehicleInspecEDM.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VehicleInspecEDM.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\VehicleInspecEDM.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VehicleInspecEDM.tt</DependentUpon>
-    </Compile>
-    <Compile Include="EntityDataModel\VehicleInspecEDM.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
+      <DependentUpon>DBModel1.tt</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -203,23 +203,19 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\InspectionDB.mdf" />
-    <Content Include="App_Data\InspectionDB_log.ldf">
-      <DependentUpon>InspectionDB.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="EntityDataModel\VehicleInspecEDM.Context.tt">
+    <Content Include="EntityDataModel\DBModel1.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
-      <LastGenOutput>VehicleInspecEDM.Context.cs</LastGenOutput>
+      <DependentUpon>DBModel1.edmx</DependentUpon>
+      <LastGenOutput>DBModel1.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="EntityDataModel\VehicleInspecEDM.tt">
+    <Content Include="EntityDataModel\DBModel1.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
-      <LastGenOutput>VehicleInspecEDM.cs</LastGenOutput>
+      <DependentUpon>DBModel1.edmx</DependentUpon>
+      <LastGenOutput>DBModel1.cs</LastGenOutput>
     </Content>
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -228,12 +224,12 @@
     <Content Include="KnockoutModels\VehicleViewModel.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="EntityDataModel\VehicleInspecEDM.edmx">
+    <EntityDeploy Include="EntityDataModel\DBModel1.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VehicleInspecEDM.Designer.cs</LastGenOutput>
+      <LastGenOutput>DBModel1.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="EntityDataModel\VehicleInspecEDM.edmx.diagram">
-      <DependentUpon>VehicleInspecEDM.edmx</DependentUpon>
+    <Content Include="EntityDataModel\DBModel1.edmx.diagram">
+      <DependentUpon>DBModel1.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -268,6 +264,7 @@
     <Content Include="Views\Home\InspectionSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Inspection\" />
   </ItemGroup>
   <ItemGroup>

@@ -10,13 +10,13 @@
 
             <div class="form-group col-md-4">
                 <label for="model">Model:</label>
-                <select id="model" class="form-control" data-bind="options: models, optionsText: 'Name', value: Model, optionsCaption: 'Please select a model', disable: InspectionReady">
+                <select id="model" class="form-control" data-bind="options: models, optionsText: 'Name', value: Model, optionsCaption: 'Please select a model', disable: !Make() || InspectionReady">
                 </select>
             </div>
 
             <div class="form-group col-md-4">
-                <label for="inpAge">Type:</label>
-                <input id="inpAge" type="text" class="form-control" placeholder="Vehicle type" disabled data-bind="value: Type" />
+                <label for="type">Type:</label>
+                <input id="type" type="text" class="form-control" placeholder="Vehicle type" disabled data-bind="value: Type" />
             </div>
 
             <div style="float: right; padding-right: 18px" data-bind="hidden: InspectionReady">

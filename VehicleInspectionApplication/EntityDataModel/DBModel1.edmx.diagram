@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="f4bd7d08954345b68fb710fe5c0832cf" Name="Diagram1">
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.Checkpoint" Width="1.5" PointX="9.75" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.CheckpointGroup" Width="1.5" PointX="12" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.Inspection" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.InspectionCheckpoint" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.Make" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.Model" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.User" Width="1.5" PointX="7.5" PointY="4.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InspectionDBEntities2Model.Vehicle" Width="1.5" PointX="5.25" PointY="1.25" IsExpanded="true" />
+        <AssociationConnector Association="InspectionDBEntities2Model.FK_Checkpoint_CkpGroupId" ManuallyRouted="false" />
+        <AssociationConnector Association="InspectionDBEntities2Model.FK_InspectionCheckpoint_CheckpId" ManuallyRouted="false" />
+        <AssociationConnector Association="InspectionDBEntities2Model.FK_Inspection_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="InspectionDBEntities2Model.FK_Inspection_VehicleId" ManuallyRouted="false" />
+        <AssociationConnector Association="InspectionDBEntities2Model.FK_InspectionCheckpoint_InspecId" ManuallyRouted="false" />
+        <AssociationConnector Association="InspectionDBEntities2Model.FK_Model_Make_Id" ManuallyRouted="false" />
+        <AssociationConnector Association="InspectionDBEntities2Model.FK_Vehicle_Model_Id" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
