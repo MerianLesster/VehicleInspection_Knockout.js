@@ -7,13 +7,14 @@ using System.Web.Http;
 using DataAccessLayer.EntityDataModel;
 using DataAccessLayer.Models;
 
-namespace DataAccessLayer.Controllers
+namespace VehicleInspectionApplication.Controllers
 {
-    public class UserController : ApiController
+    public class MakeController : ApiController
     {
-        public IEnumerable<User> Get(string username, string password)
+        // GET: api/Make
+        public IEnumerable<Make> Get()
         {
-            return UserModel.SignInUser(username, password);
+            return MakeMdl.GetMakes();
         }
     }
 }

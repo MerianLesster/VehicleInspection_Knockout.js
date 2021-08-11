@@ -7,14 +7,13 @@ using System.Web.Http;
 using DataAccessLayer.EntityDataModel;
 using DataAccessLayer.Models;
 
-namespace DataAccessLayer.Controllers
+namespace VehicleInspectionApplication.Controllers
 {
-    public class CheckpGroupController : ApiController
+    public class UserController : ApiController
     {
-        // GET: api/CheckpGroup
-        public IEnumerable<CheckpointGroup> Get()
+        public IEnumerable<User> Get(string username, string password)
         {
-            return CheckpGroupMdl.GetCheckpGroups();
+            return UserModel.SignInUser(username, password);
         }
     }
 }

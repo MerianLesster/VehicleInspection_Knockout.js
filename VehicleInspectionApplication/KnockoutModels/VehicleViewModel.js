@@ -41,24 +41,20 @@ function Vehicle() {
     });
 
     // Login and Authenticate User
-    self.signInUser = function () {
+    self.signInUser = async function () {
         if (self.Username() && self.Password()) {
-            var userObj = { Id: 0, Name: self.Username(), Password: self.Password() }
-            $.ajax({
-                url: '/api/User/?username=' + self.Username() + '&password=' + self.Password(),
-                type: 'get',
-                contentType: 'application/json',
-                success: function (data) {
-                    if (data.length > 0) {
-                        self.LoginSuccess(true);
-                        localStorage.setItem('user', JSON.stringify({ Id: data[0].Id, username: self.Username() }));
-                    } else {
-                        alert("Invalid Username or Password");
-                        self.Username("");
-                        self.Password("");
-                    }
-                }
-            });
+            let data = await self.manageRequests({
+                endpoint: 'User/?username=' + self.Username() + '&password=' + self.Password(), requestMethod: 'get', data: ''
+            })
+            if (data && data.length > 0) {
+                self.LoginSuccess(true);
+                localStorage.setItem('user', JSON.stringify({ Id: data[0].Id, username: self.Username() }));
+                await self.getMakes()
+            } else {
+                alert("Invalid Username or Password");
+                self.Username("");
+                self.Password("");
+            }
         } 
     };
 
@@ -67,44 +63,41 @@ function Vehicle() {
     self.makes = ko.observableArray();
     self.makes.removeAll();
 
-    self.getMakes = function () {
-        $.ajax({
-            url: '/api/Make',
-            type: 'get',
-            contentType: 'application/json',
-            success: function (data) {
-                var arr = data.map(item => item);
-                var iterator = arr.values();
-                for (let elements of iterator) {
-                    self.makes.push(elements);
-                }
+    self.getMakes = async function () {
+        let data = await self.manageRequests({
+            endpoint: 'Make', requestMethod: 'get', data: ''
+        })
+        if (data) {
+            var arr = data.map(item => item);
+            var iterator = arr.values();
+            for (let elements of iterator) {
+                self.makes.push(elements);
             }
-        });
+        }
+        
     };
 
 
     // Get Models
-    self.getModels = function () {
+    self.getModels = async function () {
         if (self.Make() && self.Make().Id) {
-            $.ajax({
-                url: '/api/Model/?makeId=' + self.Make().Id,
-                type: 'get',
-                contentType: 'application/json',
-                success: function (data) {
-                    self.models.removeAll();
-                    var arr = data.map(item => item);
-                    var iterator = arr.values();
-                    for (let elements of iterator) {
-                        self.models.push(elements);
-                    }
+            let data = await self.manageRequests({
+                endpoint: 'Model/?makeId=' + self.Make().Id, requestMethod: 'get', data: ''
+            })
+            if (data) {
+                self.models.removeAll();
+                var arr = data.map(item => item);
+                var iterator = arr.values();
+                for (let elements of iterator) {
+                    self.models.push(elements);
                 }
-            });
+            }
         }
     };
 
 
     // Add Vehicle
-    self.addVehicle = function () {
+    self.addVehicle = async function () {
         if (!self.Make()) {
             alert("Please select the make of the vehicle");
             return;
@@ -113,54 +106,44 @@ function Vehicle() {
             return;
         }
         var vehicleObject = { Type: self.Type(), Model_Id: self.Model().Id }
-        $.ajax({
-            url: '/api/Vehicle',
-            type: 'post',
-            data: ko.toJSON(vehicleObject),
-            contentType: 'application/json',
-            success: function (vehicleRes) {
-                var userLocalStorage = localStorage.getItem('user');
-                var inspecObject = { Date: new Date().toISOString(), Score: 0, UserId: JSON.parse(userLocalStorage).Id, VehicleId: vehicleRes.Id }
-                // Create Inspection
-                $.ajax({
-                    url: '/api/Inspection',
-                    type: 'post',
-                    data: ko.toJSON(inspecObject),
-                    contentType: 'application/json',
-                    success: function (data) {
-                        self.Inspection(data);
-                        self.getCheckpointGroup();
-                    }
-                });
+        let vehicleRes = await self.manageRequests({
+            endpoint: 'Vehicle', requestMethod: 'post', data: ko.toJSON(vehicleObject)
+        })
+        if (vehicleRes) {
+            var userLocalStorage = localStorage.getItem('user');
+            var inspecObject = { Date: new Date().toISOString(), Score: 0, UserId: JSON.parse(userLocalStorage).Id, VehicleId: vehicleRes.Id }
+            // Create Inspection
+            let data = await self.manageRequests({
+                endpoint: 'Inspection', requestMethod: 'post', data: ko.toJSON(inspecObject)
+            })
+            if (data) {
+                self.Inspection(data);
+                self.getCheckpointGroup();
             }
-        });
+        }
     };
-
-    // self.CheckpointGroup = ko.observableArray([{ Name: "Interior", Checkpoints: ["AC", "Seats", "Steering wheel"] }]);
 
     // Get Checkpoint Groups
     self.CheckpointGroup = ko.observableArray();
     self.CheckpointGroup.removeAll();
 
     self.getCheckpointGroup = async function () {
-        $.ajax({
-            url: '/api/CheckpGroup',
-            type: 'get',
-            contentType: 'application/json',
-            success: async function (data) {
-                var arr = data.map(item => item);
-                var iterator = arr.values();
-                for (let elements of iterator) {
-                    self.CheckpointGroup.push(elements);
-                }
-                for (var i = 0; i < self.CheckpointGroup().length; i++) {
-                    await self.getCheckpoint(self.CheckpointGroup()[i].Id);
-                    self.CheckpointGroup()[i].Checkpoints.push(self.Checkpoints());
-                    self.Checkpoints([]);
-                }
-                self.InspectionReady(true);
+        let data = await self.manageRequests({
+            endpoint: 'CheckpGroup', requestMethod: 'get', data: ''
+        })
+        if (data) {
+            var arr = data.map(item => item);
+            var iterator = arr.values();
+            for (let elements of iterator) {
+                self.CheckpointGroup.push(elements);
             }
-        });
+            for (var i = 0; i < self.CheckpointGroup().length; i++) {
+                await self.getCheckpoint(self.CheckpointGroup()[i].Id);
+                self.CheckpointGroup()[i].Checkpoints.push(self.Checkpoints());
+                self.Checkpoints([]);
+            }
+            self.InspectionReady(true);
+        }
     };
 
 
@@ -169,23 +152,21 @@ function Vehicle() {
     self.Checkpoints.removeAll();
 
     self.getCheckpoint = async function (ckpGroupId) {
-        await $.ajax({
-            url: '/api/Checkpoint/?ckpGroupId=' + ckpGroupId + '&vehicleType=' + self.Type(),
-            type: 'get',
-            contentType: 'application/json',
-            success: function (data) {
-                var arr = data.map(item => item);
-                var iterator = arr.values();
-                for (let elements of iterator) {
-                    self.Checkpoints.push(elements);
-                }
+        let data = await self.manageRequests({
+            endpoint: 'Checkpoint/?ckpGroupId=' + ckpGroupId + '&vehicleType=' + self.Type(), requestMethod: 'get', data: ''
+        })
+        if (data) {
+            var arr = data.map(item => item);
+            var iterator = arr.values();
+            for (let elements of iterator) {
+                self.Checkpoints.push(elements);
             }
-        });
+        }
     };
 
 
     // Add Inspection Checkpoint
-    self.addInspecCheckpoint = function (data, event) {
+    self.addInspecCheckpoint = async function (data, event) {
         let checkpointId = event.target.getAttribute("CpId");
         let comment = document.getElementById("comment" + checkpointId).value;
         let status = document.getElementById("status" + checkpointId).value;
@@ -194,17 +175,14 @@ function Vehicle() {
             return;
         }
         var chpObj = { CheckpId: checkpointId, InspecId: self.Inspection().Id, Status: status, Comment: comment }
-         $.ajax({
-             url: '/api/InspecCheckpoint',
-             type: 'post',
-             data: ko.toJSON(chpObj),
-            contentType: 'application/json',
-             success: function (data) {
-                 document.getElementById("btn" + checkpointId).style.visibility = "hidden";
-                 document.getElementById("comment" + checkpointId).disabled = true;
-                 document.getElementById("status" + checkpointId).disabled = true;
-            }
-        });
+        let dataObj = await self.manageRequests({
+            endpoint: 'InspecCheckpoint', requestMethod: 'post', data: ko.toJSON(chpObj)
+        })
+        if (dataObj) {
+            document.getElementById("btn" + checkpointId).style.visibility = "hidden";
+            document.getElementById("comment" + checkpointId).disabled = true;
+            document.getElementById("status" + checkpointId).disabled = true;
+        }
     };
 
 
@@ -212,27 +190,24 @@ function Vehicle() {
     self.finalInspecArr = ko.observableArray();
     self.finalInspecArr.removeAll();
 
-    self.viewInspecSummary = function () {
-        $.ajax({
-            url: '/api/InspecCheckpoint/?inspecId=' + self.Inspection().Id,
-            type: 'get',
-            contentType: 'application/json',
-            success: function (data) {
-                self.finalInspecArr.removeAll();
-                var arr = data.map(item => item);
-                var iterator = arr.values();
-                for (let elements of iterator) {
-                    self.finalInspecArr.push(elements);
-                }
-                self.ShowSummary(true);
-                self.calculateScore();
+    self.viewInspecSummary = async function () {
+        let data = await self.manageRequests({
+            endpoint: 'InspecCheckpoint/?inspecId=' + self.Inspection().Id, requestMethod: 'get', data: ''
+        })
+        if (data) {
+            self.finalInspecArr.removeAll();
+            var arr = data.map(item => item);
+            var iterator = arr.values();
+            for (let elements of iterator) {
+                self.finalInspecArr.push(elements);
             }
-        });
+            self.ShowSummary(true);
+            self.calculateScore();
+        }
     };
 
 
-    self.calculateScore = function () {
-        console.log("test - ", self.finalInspecArr());
+    self.calculateScore = async function () {
         let checkpointGScore = 0;
         let inspectionScore = 0;
         var arr = [];
@@ -245,7 +220,6 @@ function Vehicle() {
                 res[curr.CkpGroupId].push(curr);
             else
                 Object.assign(res, { [curr.CkpGroupId]: [curr] });
-
             return res;
         }, {});
         console.log("calculateScore arr - ", obj);
@@ -261,15 +235,27 @@ function Vehicle() {
 
         let inspecObject1 = { Score: 90}
         // Update Inspection
-        $.ajax({
-            url: '/api/Inspection/?id=' + self.Inspection().Id,
-            type: 'put',
-            data: ko.toJSON(inspecObject1),
+        await self.manageRequests({
+            endpoint: 'Inspection/?id=' + self.Inspection().Id, requestMethod: 'put', data: ko.toJSON(inspecObject1) })
+    }
+
+    self.manageRequests = async function (dataObject) {
+        let response;
+        await $.ajax({
+            url: '/api/' + dataObject.endpoint,
+            type: dataObject.requestMethod,
+            data: dataObject.data,
             contentType: 'application/json',
             success: function (data) {
+                if (data) {
+                    response = data;
+                } else {
+                    response = "success";
+                }
             }
         });
-    }
+        return response;
+    };
 }
 
 // create index view view model which contain two models for partial views
@@ -286,10 +272,10 @@ $(document).ready(function () {
     if (userLocalStorage) {
         vehicleViewModel.showVehicleViewModel.LoginSuccess(true);
         vehicleViewModel.showVehicleViewModel.Username(JSON.parse(userLocalStorage).username);
+        // load all make data
+        vehicleViewModel.showVehicleViewModel.getMakes();
     } else {
         vehicleViewModel.showVehicleViewModel.LoginSuccess(false);
     }
-    // load all make data
-    vehicleViewModel.showVehicleViewModel.getMakes();
-
+    
 });

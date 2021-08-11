@@ -6,7 +6,8 @@ using System.Net.Http;
 using System.Web.Http;
 using DataAccessLayer.EntityDataModel;
 using DataAccessLayer.Models;
-namespace DataAccessLayer.Controllers
+
+namespace VehicleInspectionApplication.Controllers
 {
     public class CheckpointController : ApiController
     {
