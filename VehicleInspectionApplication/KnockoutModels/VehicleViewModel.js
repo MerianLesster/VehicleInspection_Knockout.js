@@ -239,6 +239,7 @@ function Vehicle() {
             endpoint: 'Inspection/?id=' + self.Inspection().Id, requestMethod: 'put', data: ko.toJSON(inspecObject1) })
     }
 
+    // Reusable function for ajax requests
     self.manageRequests = async function (dataObject) {
         let response;
         await $.ajax({

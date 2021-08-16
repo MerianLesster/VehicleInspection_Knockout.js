@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VehicleInspectionApplicatio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DataAccessLayer\DataAccessLayer.csproj", "{809469D6-D4EE-4016-A08E-C774D5457A25}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InspectionUnitTest", "InspectionUnitTest\InspectionUnitTest.csproj", "{4CC7A506-0107-4788-BF65-ED27FB294FBD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{809469D6-D4EE-4016-A08E-C774D5457A25}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{809469D6-D4EE-4016-A08E-C774D5457A25}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{809469D6-D4EE-4016-A08E-C774D5457A25}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC7A506-0107-4788-BF65-ED27FB294FBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC7A506-0107-4788-BF65-ED27FB294FBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC7A506-0107-4788-BF65-ED27FB294FBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC7A506-0107-4788-BF65-ED27FB294FBD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

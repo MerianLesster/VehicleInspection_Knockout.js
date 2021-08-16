@@ -25,13 +25,13 @@ namespace DataAccessLayer.EntityDataModel
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Checkpoint> Checkpoints { get; set; }
-        public DbSet<CheckpointGroup> CheckpointGroups { get; set; }
-        public DbSet<Inspection> Inspections { get; set; }
-        public DbSet<InspectionCheckpoint> InspectionCheckpoints { get; set; }
-        public DbSet<Make> Makes { get; set; }
-        public DbSet<Model> Models { get; set; }
-        public DbSet<User> Users { get; set; }
-        public DbSet<Vehicle> Vehicles { get; set; }
+        public virtual DbSet<Checkpoint> Checkpoints { get; set; }
+        public virtual DbSet<CheckpointGroup> CheckpointGroups { get; set; }
+        public virtual DbSet<Inspection> Inspections { get; set; }
+        public virtual DbSet<InspectionCheckpoint> InspectionCheckpoints { get; set; }
+        public virtual DbSet<Make> Makes { get; set; }
+        public virtual DbSet<Model> Models { get; set; }
+        public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Vehicle> Vehicles { get; set; }
     }
 }
